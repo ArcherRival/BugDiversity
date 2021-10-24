@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 import 'placeholder_widget.dart';
+import 'camera_page.dart';
 import 'endangered.dart';
 
-class CameraPage extends StatefulWidget {
-  const CameraPage({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
 
   @override
-  _CameraPageState createState() => _CameraPageState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _CameraPageState extends State<CameraPage> {
+class _MainPageState extends State<MainPage> {
   @override
   int _currentIndex = 1;
   final List _children = [
     PlaceholderWidget(Colors.white),
-    PlaceholderWidget(Colors.deepOrange),
-    Endangered()
+    CameraPage(),
+    Endangered(),
   ];
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Jeffrey App'),
+        backgroundColor: Colors.lightBlue,
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
