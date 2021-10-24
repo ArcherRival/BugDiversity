@@ -42,9 +42,11 @@ dependencies:
   path_provider: ^2.0.5
   path: ^1.8.0
   firebase_core: ^1.8.0
+  geolocator: ^7.7.1
+  geocoding: ^2.0.1
   tflite: ^1.1.2
   image: ^3.0.8
-  tflite_flutter_helper: ^0.3.0
+
 
 dev_dependencies:
   flutter_test:
