@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class Endangered extends StatefulWidget {
   const Endangered({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class Endangered extends StatefulWidget {
 class _EndangeredState extends State<Endangered> {
   Geolocator geolocator = Geolocator();
   late Position userLocation;
+  List<Placemark> placemarks = await placemarkFromCoordinates(userLocation.latitude, userLocation.longitude
 
   @override
   void initState() {
@@ -19,6 +21,7 @@ class _EndangeredState extends State<Endangered> {
     _getLocation().then((position) {
       userLocation = position;
     });
+
   }
 
   @override
