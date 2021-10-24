@@ -1,5 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'placeholder_widget.dart';
+import 'package:image_picker/image_picker.dart';
+
+enum ImageSourceType { gallery, camera }
 
 class CameraPage extends StatefulWidget {
   const CameraPage({Key? key}) : super(key: key);
@@ -9,36 +13,68 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> {
-  @override
-  int _currentIndex = 0;
-  final List _children = [
-    PlaceholderWidget(Colors.white),
-    PlaceholderWidget(Colors.deepOrange),
-    PlaceholderWidget(Colors.green)
-  ];
+  File? _image;
 
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Jeffrey App'),
-      ),
-      body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped, // new
-        currentIndex: _currentIndex, // new
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.bug_report), label: "Bug"),
-          BottomNavigationBarItem(icon: Icon(Icons.camera), label: "Camera"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.dangerous), label: "Endangered")
-        ],
-      ),
-    );
+    return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+              flexibleSpace: TabBar(
+            indicatorColor: Colors.white,
+            tabs: [
+              Tab(text: 'Camera', icon: Icon(Icons.camera_alt)),
+              Tab(text: 'Photos', icon: Icon(Icons.photo)),
+            ],
+          )),
+          body: TabBarView(
+            children: [
+              Center(
+                  child: OutlinedButton.icon(
+                onPressed: () {
+                  _getFromCamera();
+                },
+                icon: Icon(Icons.camera_alt_outlined, size: 50),
+                label: Text("TAKE PHOTO"),
+              )),
+              Center(
+                  child: OutlinedButton.icon(
+                onPressed: () {
+                  _getFromGallery();
+                },
+                icon: Icon(Icons.camera_alt_outlined, size: 50),
+                label: Text("GET FROM GALLERY"),
+              )),
+            ],
+          ),
+        ));
   }
 
-  void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+  _getFromGallery() async {
+    XFile? pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
+
+  /// Get from Camera
+  _getFromCamera() async {
+    XFile? pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
   }
 }
