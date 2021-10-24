@@ -22,7 +22,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Jeffrey App'),
+        title: Text('ShutterBug'),
         backgroundColor: Colors.lightBlue,
       ),
       body: _children[_currentIndex],
