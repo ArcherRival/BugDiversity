@@ -12,6 +12,7 @@ class _EndangeredState extends State<Endangered> {
   @override
   Widget build(BuildContext context) {
     const title = 'Endangered';
+    List<int> text = [1, 2, 3, 4];
     return MaterialApp(
       title: title,
       home: Scaffold(
@@ -19,37 +20,11 @@ class _EndangeredState extends State<Endangered> {
           title: const Text(title),
         ),
         body: ListView(
-          children: const <Widget>[
-            ListTile(
-              title: Text('1. [Placeholder]'),
-            ),
-            ListTile(
-              title: Text('2. [Placeholder]'),
-            ),
-            ListTile(
-              title: Text('3. [Placeholder]'),
-            ),
-            ListTile(
-              title: Text('4. [Placeholder]'),
-            ),
-            ListTile(
-              title: Text('5. [Placeholder]'),
-            ),
-            ListTile(
-              title: Text('6. [Placeholder]'),
-            ),
-            ListTile(
-              title: Text('7. [Placeholder]'),
-            ),
-            ListTile(
-              title: Text('8. [Placeholder]'),
-            ),
-            ListTile(
-              title: Text('9. [Placeholder]'),
-            ),
-            ListTile(
-              title: Text('10. [Placeholder]'),
-            ),
+          children: <Widget>[
+            for (var i in text)
+              (ListTile(
+                title: Text(i.toString() + " my name joe mama"),
+              )),
           ],
         ),
       ),
