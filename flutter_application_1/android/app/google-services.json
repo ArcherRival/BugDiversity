@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "320996174513",
+    "project_id": "bugdiversity-fb0df",
+    "storage_bucket": "bugdiversity-fb0df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320996174513:android:835001479aee5b16259090",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320996174513-9chru2c60fuj1o0dmpq6sldn4kdr1kta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbEj6L4IiiL-F0eUMeKvo-UUzPDrXgztA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320996174513-9chru2c60fuj1o0dmpq6sldn4kdr1kta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
