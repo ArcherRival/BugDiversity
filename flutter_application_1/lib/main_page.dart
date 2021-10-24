@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'placeholder_widget.dart';
 import 'camera_page.dart';
+import 'endangered.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _MainPageState extends State<MainPage> {
   final List _children = [
     PlaceholderWidget(Colors.white),
     CameraPage(),
-    PlaceholderWidget(Colors.green)
+    Endangered(),
   ];
 
   Widget build(BuildContext context) {
