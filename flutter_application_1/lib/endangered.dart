@@ -33,7 +33,7 @@ class _EndangeredState extends State<Endangered> {
         ),
         body: ListView(
           children: <Widget>[
-            //ListTile(title: Text(userLocation.latitude.toString())),
+            ListTile(title: Text(userLocation.latitude.toString())),
             for (var i in text)
               (ListTile(
                 title: Text(i.toString() + " my name joe mama"),
