@@ -30,7 +30,7 @@ class _AppState extends State<MyApp> {
       builder: (context, snapshot) {
         // Check for errors
         if (snapshot.hasError) {
-          return Center(child: Text("Someting went Worng"));
+          return Center(child: Text("Someting went Wrong"));
         }
 
         // Once complete, show your application
