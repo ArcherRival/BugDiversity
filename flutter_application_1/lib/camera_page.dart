@@ -100,59 +100,59 @@ class _CameraPageState extends State<CameraPage> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-              flexibleSpace: TabBar(
-            indicatorColor: Colors.white,
-            tabs: [
-              Tab(text: 'Camera', icon: Icon(Icons.camera_alt)),
-              Tab(text: 'Photos', icon: Icon(Icons.photo)),
-            ],
-          )),
-          body: TabBarView(
-            children: [
-              Center(
-                  child: OutlinedButton.icon(
-                onPressed: () {
-                  pickImage();
-                },
-                icon: Icon(Icons.camera_alt_outlined, size: 50),
-                label: Text("TAKE PHOTO"),
-              )),
-              Center(
-                  child: OutlinedButton.icon(
-                onPressed: () {
-                  pickGalleryImage();
-                },
-                icon: Icon(Icons.camera_alt_outlined, size: 50),
-                label: Text("GET FROM GALLERY"),
-              )),
-            ],
-          ),
-        ));
-  }
-
-  Widget _buildPopupDialog(BuildContext context) {
-    return new AlertDialog(
-      title: const Text('Popup example'),
-      content: new Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text("Hello"),
-        ],
-      ),
-      actions: <Widget>[
-        new FlatButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          textColor: Theme.of(context).primaryColor,
-          child: Text('Close'),
-        ),
-      ],
-    );
+    if (_loading == true) {
+      return DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+                flexibleSpace: TabBar(
+              indicatorColor: Colors.white,
+              tabs: [
+                Tab(text: 'Camera', icon: Icon(Icons.camera_alt)),
+                Tab(text: 'Photos', icon: Icon(Icons.photo)),
+              ],
+            )),
+            body: TabBarView(
+              children: [
+                Center(
+                    child: OutlinedButton.icon(
+                  onPressed: () {
+                    pickImage();
+                  },
+                  icon: Icon(Icons.camera_alt_outlined, size: 50),
+                  label: Text("TAKE PHOTO"),
+                )),
+                Center(
+                    child: OutlinedButton.icon(
+                  onPressed: () {
+                    pickGalleryImage();
+                  },
+                  icon: Icon(Icons.camera_alt_outlined, size: 50),
+                  label: Text("GET FROM GALLERY"),
+                )),
+              ],
+            ),
+          ));
+    } else {
+      if (_output[0] != null) {
+        return Column(children: <Widget>[
+          Text('The insect is: ${_output[0]['label']}',
+              style: DefaultTextStyle.of(context)
+                  .style
+                  .apply(fontSizeFactor: 2.0)),
+          Expanded(
+              child: FittedBox(
+            fit: BoxFit.cover,
+            clipBehavior: Clip.hardEdge,
+            child: Image(
+              image: FileImage(_image),
+              fit: BoxFit.cover,
+            ),
+          ))
+        ]);
+      } else {
+        return Text("Not an insect.");
+      }
+    }
   }
 }
