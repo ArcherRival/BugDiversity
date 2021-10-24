@@ -12,16 +12,15 @@ class Endangered extends StatefulWidget {
 
 class _EndangeredState extends State<Endangered> {
   Geolocator geolocator = Geolocator();
-  late Position userLocation;
-  List<Placemark> placemarks = await placemarkFromCoordinates(userLocation.latitude, userLocation.longitude
+  String? placemarks = "North Carolina";
 
   @override
   void initState() {
     super.initState();
     _getLocation().then((position) {
-      userLocation = position;
+      placemarks = position[0].administrativeArea;
+      setState(() {});
     });
-
   }
 
   @override
@@ -36,18 +35,18 @@ class _EndangeredState extends State<Endangered> {
         ),
         body: ListView(
           children: <Widget>[
-            ListTile(title: Text(userLocation.latitude.toString())),
-            for (var i in text)
+            ListTile(title: Text("Ophiogomphus edmundo")),
+            /*for (var i in text)
               (ListTile(
                 title: Text(i.toString() + " my name joe mama"),
-              )),
+              )),*/
           ],
         ),
       ),
     );
   }
 
-  Future<Position> _getLocation() async {
+  Future<List<Placemark>> _getLocation() async {
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -81,6 +80,7 @@ class _EndangeredState extends State<Endangered> {
 
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
-    return await Geolocator.getCurrentPosition();
+    Position p = await Geolocator.getCurrentPosition();
+    return await placemarkFromCoordinates(p.latitude, p.longitude);
   }
 }
